@@ -16,9 +16,11 @@ Live URL: [link](some url)
 - [👤 Author](#-author)
 
 ## 🚀 Getting Started
+
 This project is built using Angular, SCSS, Typescript and hosted on Netlify.
 
 ## 🛠️ Tech Stack
+
 - Angular
 - RxJS
 - Jasmine & Karma(test runner)
@@ -91,6 +93,16 @@ ng e2e
 ## 📸 Screenshots
 
 ## 📋 Approach
+
+- Defined by project starting structue by creating folders for `services`, `components`, `models`, `pages`, `assets`, `utilities`, `environments`, etc.
+
+- Create a `NoteService` to manage or handle CRUD operations
+
+- Setup and connect to **supabase** to persist data
+
+- Create an `AuthService` to handle auth functionalities such as login, logout, forgot password, etc.
+
+- Implement authentication with Google Signin and Email, Password.
 
 ## 🚀 Deployment
 

@@ -5,16 +5,24 @@ import { NotesComponent } from './pages/notes/notes.component';
 import { ArchivedComponent } from './pages/archived/archived.component';
 import { AddNoteComponent } from './pages/add-note/add-note.component';
 import { NoteDetailComponent } from './pages/note-detail/note-detail.component';
-import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { LoginComponent } from './pages/login/login.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    component: LandingPageComponent,
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: 'notes',
     component: NotesComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'notes/:id',
@@ -28,4 +36,5 @@ export const routes: Routes = [
     path: 'create',
     component: AddNoteComponent,
   },
+  { path: '**', component: PageNotFoundComponent },
 ];
