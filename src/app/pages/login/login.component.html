@@ -1,3 +1,25 @@
 <div>
+  <h2>Login</h2>
+  <form [formGroup]="loginForm" (submit)="onSubmit()">
+    <div>
+      <label>Email:</label>
+      <input type="email" formControlName="email" />
+      @if (loginForm.controls['email'].invalid &&
+      (loginForm.controls['email'].dirty ||
+      loginForm.controls['email'].touched)) {
+      <i>Email is required and Must be valid</i>
+      }
+    </div>
+    <div>
+      <label>Password:</label>
+      <input type="password" formControlName="password" />
+      @if (loginForm.controls['password'].invalid &&
+      (loginForm.controls['password'].dirty ||
+      loginForm.controls['password'].touched)) {
+      <i>Password must be at least 8 characters</i>
+      }
+    </div>
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+  </form>
   <button (click)="handleAuth()">Signup Using Google</button>
 </div>
