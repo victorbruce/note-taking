@@ -32,6 +32,14 @@ export class AuthService {
     });
   }
 
+  signUp(email: string, password: string) {
+    return this.supabase.auth.signUp({ email, password });
+  }
+
+  signIn(email: string, password: string) {
+    return this.supabase.auth.signInWithPassword({ email, password });
+  }
+
   get isLoggedIn(): boolean {
     const user = localStorage.getItem('session') as string;
 

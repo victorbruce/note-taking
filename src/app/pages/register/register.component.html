@@ -1,0 +1,24 @@
+<div>
+  <h2>Register</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Email:</label>
+      <input type="email" formControlName="email" />
+    </div>
+    @if (registerForm.controls['email'].invalid &&
+    (registerForm.controls['email'].dirty ||
+    registerForm.controls['email'].touched)) {
+    <i>Email is required and Must be valid</i>
+    }
+    <div>
+      <label>Password:</label>
+      <input type="password" formControlName="password" />
+      @if (registerForm.controls['password'].invalid &&
+      (registerForm.controls['password'].dirty ||
+      registerForm.controls['password'].touched)) {
+      <i>Password must be at least 8 characters</i>
+      }
+    </div>
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+  </form>
+</div>
