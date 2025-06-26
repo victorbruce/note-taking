@@ -52,4 +52,12 @@ export class AuthService {
       return null;
     }
   }
+
+  async getSession() {
+    const { data } = await this.supabase.client.auth.getSession();
+    if (data.session) {
+      return data.session;
+    }
+    return null;
+  }
 }
