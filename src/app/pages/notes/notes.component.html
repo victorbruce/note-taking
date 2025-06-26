@@ -1,3 +1,10 @@
-<p>notes works!</p>
+<p>All notes</p>
+<div>All Notes</div>
+
+<button (click)="toggleArchived()">toggle note</button>
+
+<ul>
+  <li *ngFor="let note of notes()">{{ note.title }} {{ note.is_archived }}</li>
+</ul>
 
 <button (click)="handleLogout()">Logout</button>

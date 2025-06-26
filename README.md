@@ -104,6 +104,10 @@ ng e2e
 
 - Implement authentication with Google Signin and Email, Password.
 
+- Create tables in Supabase(Users, Notes, Tags)
+
+- Implement CRUD operations for notes which includes joining and aggregating data from other tables
+
 ## 🚀 Deployment
 
 Netlify

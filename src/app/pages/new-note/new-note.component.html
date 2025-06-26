@@ -1,0 +1,24 @@
+<div>
+  <h1>Create Note</h1>
+  <form [formGroup]="createNoteForm" (ngSubmit)="createNote()">
+    <div>
+      <label>Title</label>
+      <input type="text" formControlName="title" />
+    </div>
+    <div>
+      <label>Tags</label>
+      <input type="text" formControlName="tags" />
+    </div>
+    <div>
+      <label>Content</label>
+      <textarea formControlName="content"></textarea>
+    </div>
+    <button>Create</button>
+  </form>
+
+  <br />
+  <button (click)="demo()">Demo add</button>
+  <button (click)="deleteNote()">Delete note</button>
+  <button (click)="editNote()">Edit note</button>
+  <button (click)="getNote()">Get single note</button>
+</div>
