@@ -1,58 +1,55 @@
-import { Injectable, NgZone, inject } from '@angular/core';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { environment } from '../../environments/environment';
-import { Router } from '@angular/router';
+import { Injectable, inject } from '@angular/core';
+import { SupabaseService } from './supabase.service';
+import { Session } from '@supabase/supabase-js';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private supabase!: SupabaseClient;
-  private router = inject(Router);
-  private _ngZone = inject(NgZone);
+  private supabase = inject(SupabaseService);
 
-  constructor() {
-    this.supabase = createClient(
-      environment.supabaseUrl,
-      environment.supabaseKey
-    );
-
-    this.supabase.auth.onAuthStateChange((event, session) => {
-      console.log('event:', event);
-      console.log('session:', session);
-
-      // store session in localstorage
-      localStorage.setItem('session', JSON.stringify(session?.user));
-
-      if (session?.user) {
-        this._ngZone.run(() => {
-          this.router.navigate(['/notes']);
-        });
-      }
-    });
-  }
+  constructor() {}
 
   signUp(email: string, password: string) {
-    return this.supabase.auth.signUp({ email, password });
+    return this.supabase.client.auth.signUp({ email, password });
   }
 
   signIn(email: string, password: string) {
-    return this.supabase.auth.signInWithPassword({ email, password });
+    return this.supabase.client.auth.signInWithPassword({ email, password });
   }
 
-  get isLoggedIn(): boolean {
-    const user = localStorage.getItem('session') as string;
+  async signOut(): Promise<void> {
+    const { error } = await this.supabase.client.auth.signOut();
 
-    return user === 'undefined' ? false : true;
+    if (error) throw error;
+    localStorage.removeItem('session');
   }
 
   async signInWithGoogle() {
-    this.supabase.auth.signInWithOAuth({
+    const { error } = await this.supabase.client.auth.signInWithOAuth({
       provider: 'google',
     });
+
+    if (error) throw error;
   }
 
-  async signOut() {
-    await this.supabase.auth.signOut();
+  get isLoggedIn(): boolean {
+    const session = localStorage.getItem('session');
+    try {
+      const parsed: Session = JSON.parse(session ?? '{}');
+      return !!parsed?.access_token;
+    } catch {
+      return false;
+    }
+  }
+
+  get userId() {
+    const session = localStorage.getItem('session');
+    try {
+      const parsed: Session = JSON.parse(session ?? '{}');
+      return parsed?.user?.id ?? null;
+    } catch {
+      return null;
+    }
   }
 }
