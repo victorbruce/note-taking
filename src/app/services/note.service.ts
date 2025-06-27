@@ -1,4 +1,4 @@
-import { Injectable, inject, signal, computed } from '@angular/core';
+import { Injectable, inject, signal, computed, effect } from '@angular/core';
 import { SupabaseService } from './supabase.service';
 import { AuthService } from './auth.service';
 import { Note } from '../models/note';
@@ -10,12 +10,41 @@ export class NoteService {
   private supabase = inject(SupabaseService);
   private authService = inject(AuthService);
 
+  //signals
   notes = signal<Note[]>([]);
+  searchQuery = signal('');
+  debouncedSearchQuery = signal('');
+
+  // debounce timer
+  private debounceTimeout: any = null;
+
+  // computed signals
   archivedNotes = computed(() =>
     this.notes().filter((note) => note.is_archived)
   );
+  filteredNotes = computed(() => {
+    const query = this.debouncedSearchQuery().toLowerCase().trim();
+    return query
+      ? this.notes().filter(
+          (note) =>
+            note.title.toLowerCase().includes(query) ||
+            note.content.toLowerCase().includes(query) ||
+            note.tags?.some((tag) => tag?.toLowerCase().includes(query))
+        )
+      : this.notes();
+  });
 
-  constructor() {}
+  constructor() {
+    effect(() => {
+      const query = this.searchQuery();
+
+      clearTimeout(this.debounceTimeout);
+
+      this.debounceTimeout = setTimeout(() => {
+        this.debouncedSearchQuery.set(query);
+      }, 300);
+    });
+  }
 
   async loadNotes() {
     try {

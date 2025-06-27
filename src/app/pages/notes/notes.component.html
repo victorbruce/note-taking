@@ -1,10 +1,30 @@
-<p>All notes</p>
 <div>All Notes</div>
 
 <button (click)="toggleArchived()">toggle note</button>
 
+<input
+  type="text"
+  placeholder="Search notes..."
+  [value]="searchQuery()"
+  (input)="onSearchInput($event)"
+  class="search-box"
+/>
+
 <ul>
-  <li *ngFor="let note of notes()">{{ note.title }} {{ note.is_archived }}</li>
+  <li *ngFor="let note of notes()">
+    <h3>{{ note.title }}</h3>
+    <p>{{ note.content }}</p>
+    <small *ngIf="note.tags?.length">Tags: {{ note.tags.join(", ") }}</small>
+  </li>
+</ul>
+
+<ul>
+  <!-- <li *ngFor="let note of searchResults()">
+    <h3>{{ note.title }}</h3>
+    <p>{{ note.content }}, {{ note.is_archived }}</p>
+    <p><strong>Tags:</strong> {{ note.tags.join(", ") }}</p> -->
+  <!-- <p>{{ note.is_archived }}</p> -->
+  <!-- </li> -->
 </ul>
 
 <button (click)="handleLogout()">Logout</button>
