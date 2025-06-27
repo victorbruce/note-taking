@@ -15,7 +15,9 @@ export class NotesComponent implements OnInit {
   private noteService = inject(NoteService);
   private router = inject(Router);
 
-  notes = this.noteService.notes;
+  readonly notes = this.noteService.filteredNotes;
+  readonly searchQuery = this.noteService.searchQuery;
+
   error: string | null = null;
 
   ngOnInit() {
@@ -39,25 +41,9 @@ export class NotesComponent implements OnInit {
     }
   }
 
-  // async fetchNotes() {
-  //   console.log('notes fetching');
-  //   try {
-  //     const notes = await this.noteService.getAllNotes();
-  //     this.notes = notes as any[];
-  //     console.log('notes success', notes);
-  //   } catch (error) {
-  //     console.log('error', error);
-  //   }
-  // }
-
-  // async fetchTags() {
-  //   console.log('fetching tags');
-  //   try {
-  //     const tags = await this.noteService.getTags();
-  //     this.tags = tags as any;
-  //     console.log('from component', tags);
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
+  onSearchInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    console.log('input value', input.value);
+    this.noteService.searchQuery.set(input.value);
+  }
 }
