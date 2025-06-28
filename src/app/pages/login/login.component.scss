@@ -1,0 +1,331 @@
+@use "../../../styles/mixins" as *;
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-background);
+  padding: 2rem;
+  position: relative;
+}
+
+.theme-toggle-btn {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.theme-toggle-btn:hover {
+  background-color: var(--color-hover);
+  transform: scale(1.05);
+}
+
+.theme-icon {
+  font-size: 1.25rem;
+}
+
+.login-card {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 540px;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.2s ease;
+}
+
+.brand-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-primary);
+}
+
+.logo-icon {
+  color: var(--color-primary);
+}
+
+.brand-text {
+  @include TextPreset1;
+  color: var(--color-text-primary);
+  font-style: italic;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.welcome-title {
+  @include TextPreset1;
+  color: var(--color-text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.welcome-subtitle {
+  @include TextPreset5;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.login-form {
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  @include TextPreset5;
+  color: var(--color-text-primary);
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.password-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.forgot-link {
+  @include TextPreset6;
+  color: var(--color-text-tertiary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.forgot-link:hover {
+  color: var(--color-primary);
+}
+
+.form-input {
+  @include TextPreset5;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-input.error {
+  border-color: var(--color-danger);
+}
+
+.password-input-wrapper {
+  position: relative;
+}
+
+.password-input {
+  padding-right: 3rem;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.password-toggle:hover {
+  color: var(--color-text-secondary);
+  background-color: var(--color-hover);
+}
+
+.error-message {
+  @include flex(row, flex-start, center, 4px);
+  @include TextPreset6;
+  color: var(--color-danger);
+  margin-top: 0.25rem;
+}
+
+.form-error {
+  margin-top: 1rem;
+}
+
+.login-btn {
+  @include TextPreset4;
+  width: 100%;
+  padding: 0.875rem;
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.login-btn:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.loading-spinner svg {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.divider {
+  text-align: center;
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+.divider-text {
+  @include TextPreset6;
+  color: var(--color-text-tertiary);
+  background-color: var(--color-surface);
+  padding: 0 1rem;
+  position: relative;
+}
+
+.google-btn {
+  @include TextPreset5;
+  width: 100%;
+  padding: 0.875rem;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.google-btn:hover:not(:disabled) {
+  background-color: var(--color-hover);
+  border-color: var(--color-text-tertiary);
+}
+
+.google-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.signup-section {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.signup-text {
+  @include TextPreset6;
+  color: var(--color-text-secondary);
+  margin-right: 0.5rem;
+}
+
+.signup-link {
+  @include TextPreset6;
+  color: var(--color-text-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.signup-link:hover {
+  color: var(--color-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 1rem;
+  }
+
+  .login-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .theme-toggle-btn {
+    top: 1rem;
+    right: 1rem;
+  }
+}
