@@ -6,11 +6,13 @@ import { RegisterComponent } from './pages/register/register.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { authGuard } from './guards/auth.guard';
 import { NotesComponent } from './pages/notes/notes.component';
+import { NotesResolver } from './pages/notes/notes-resolver.resolver';
 
 export const routes: Routes = [
   {
     path: '',
-    component: NotesComponent,
+    redirectTo: 'notes',
+    pathMatch: 'full',
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -20,21 +22,28 @@ export const routes: Routes = [
     children: [
       {
         path: 'notes',
-        loadChildren: () =>
-          import('./pages/notes/notes.component').then((c) => c.NotesComponent),
+        component: NotesComponent,
+        resolve: { notesData: NotesResolver },
       },
       {
         path: 'archived',
-        loadChildren: () =>
+        loadComponent: () =>
           import('./pages/archived/archived.component').then(
             (c) => c.ArchivedComponent
           ),
       },
       {
         path: 'create',
-        loadChildren: () =>
+        loadComponent: () =>
           import('./pages/new-note/new-note.component').then(
             (c) => c.NewNoteComponent
+          ),
+      },
+      {
+        path: 'settings',
+        loadComponent: () =>
+          import('./pages/settings/settings.component').then(
+            (c) => c.SettingsComponent
           ),
       },
     ],
