@@ -1,0 +1,22 @@
+<h1>Typography Selector</h1>
+
+<div class="font-switcher">
+  <label for="fontSelect">Select font family:</label>
+  <select id="fontSelect" (change)="onFontSelect($event)">
+    <option
+      *ngFor="let font of fonts"
+      [value]="font.key"
+      [selected]="font.key === currentFont"
+    >
+      {{ font.definition.name }}
+    </option>
+  </select>
+
+  <select (change)="onThemeSelect($event)">
+    <option value="system" [selected]="currentTheme === 'system'">
+      System
+    </option>
+    <option value="light" [selected]="currentTheme === 'light'">Light</option>
+    <option value="dark" [selected]="currentTheme === 'dark'">Dark</option>
+  </select>
+</div>
