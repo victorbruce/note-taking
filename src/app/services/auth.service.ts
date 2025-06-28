@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { SupabaseService } from './supabase.service';
 import { Session } from '@supabase/supabase-js';
 
@@ -7,15 +7,28 @@ import { Session } from '@supabase/supabase-js';
 })
 export class AuthService {
   private supabase = inject(SupabaseService);
+  session = signal<Session | null>(null);
 
-  constructor() {}
+  constructor() {
+    this.supabase.client.auth.onAuthStateChange((event, session) => {
+      console.log('Auth event:', event);
+      console.log('Session', session);
+    });
+
+    this.supabase.client.auth.getSession().then(({ data }) => {
+      this.session.set(data.session);
+    });
+  }
 
   signUp(email: string, password: string) {
     return this.supabase.client.auth.signUp({ email, password });
   }
 
-  signIn(email: string, password: string) {
-    return this.supabase.client.auth.signInWithPassword({ email, password });
+  async signIn(email: string, password: string) {
+    return await this.supabase.client.auth.signInWithPassword({
+      email,
+      password,
+    });
   }
 
   async signOut(): Promise<void> {
@@ -34,23 +47,11 @@ export class AuthService {
   }
 
   get isLoggedIn(): boolean {
-    const session = localStorage.getItem('session');
-    try {
-      const parsed: Session = JSON.parse(session ?? '{}');
-      return !!parsed?.access_token;
-    } catch {
-      return false;
-    }
+    return !!this.session()?.access_token;
   }
 
   get userId() {
-    const session = localStorage.getItem('session');
-    try {
-      const parsed: Session = JSON.parse(session ?? '{}');
-      return parsed?.user?.id ?? null;
-    } catch {
-      return null;
-    }
+    return this.session()?.user?.id ?? null;
   }
 
   async getSession() {
