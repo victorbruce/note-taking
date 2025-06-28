@@ -19,19 +19,19 @@ export class SupabaseService {
       environment.supabaseKey
     );
 
-    this.supabase.auth.onAuthStateChange(this.handleAuthChange.bind(this));
+    // this.supabase.auth.onAuthStateChange(this.handleAuthChange.bind(this));
   }
 
-  private handleAuthChange(event: AuthChangeEvent, session: Session | null):void {
-    console.log('Autn event:', event);
-    console.log('Session:', session);
+  // private handleAuthChange(event: AuthChangeEvent, session: Session | null):void {
+  //   console.log('Autn event:', event);
+  //   console.log('Session:', session);
 
-    if (session) {
-      localStorage.setItem('session', JSON.stringify(session));
-    } else {
-      localStorage.removeItem('session');
-    }
-  }
+  //   if (session) {
+  //     localStorage.setItem('session', JSON.stringify(session));
+  //   } else {
+  //     localStorage.removeItem('session');
+  //   }
+  // }
 
   get client() {
     return this.supabase;
