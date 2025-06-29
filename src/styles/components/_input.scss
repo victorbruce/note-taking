@@ -1,0 +1,103 @@
+@use "../mixins" as *;
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  @include TextPreset5;
+  color: var(--color-text-primary);
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-input {
+  @include TextPreset5;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-input.error {
+  border-color: var(--color-danger);
+}
+
+.error-message {
+  @include flex(row, flex-start, center, 4px);
+  @include TextPreset6;
+  color: var(--color-danger);
+  margin-top: 0.25rem;
+}
+
+.password-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.password-input-wrapper {
+  position: relative;
+}
+
+.form-label {
+  @include TextPreset5;
+  color: var(--color-text-primary);
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.forgot-link {
+  @include TextPreset6;
+  color: var(--color-text-tertiary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.forgot-link:hover {
+  color: var(--color-primary);
+}
+
+.password-input {
+  padding-right: 3rem;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.password-toggle:hover {
+  color: var(--color-text-secondary);
+  background-color: var(--color-hover);
+}
