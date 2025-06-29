@@ -8,6 +8,7 @@ import { authGuard } from './guards/auth.guard';
 import { NotesComponent } from './pages/notes/notes.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { NotesResolver } from './pages/notes/notes-resolver.resolver';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
   {
     path: '',
     canActivate: [authGuard],
