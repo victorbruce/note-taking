@@ -20,8 +20,8 @@ export class AuthService {
     });
   }
 
-  signUp(email: string, password: string) {
-    return this.supabase.client.auth.signUp({ email, password });
+  async signUp(email: string, password: string) {
+    return await this.supabase.client.auth.signUp({ email, password });
   }
 
   async signIn(email: string, password: string) {
