@@ -8,11 +8,15 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
+  FormControl,
 } from '@angular/forms';
+import { InputComponent } from '../../components/input/input.component';
+import { PasswordInputComponent } from '../../components/password-input/password-input.component';
+import { LoaderComponent } from "../../shared/loader/loader.component";
 
 @Component({
   selector: 'app-landing-page',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, InputComponent, PasswordInputComponent, LoaderComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -29,6 +33,14 @@ export class LoginComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
+
+  get emailControl(): FormControl {
+    return this.loginForm.get('email') as FormControl;
+  }
+
+  get passwordControl(): FormControl {
+    return this.loginForm.get('password') as FormControl;
+  }
 
   togglePasswordVisibility(): void {
     this.showPassword.update((show) => !show);
