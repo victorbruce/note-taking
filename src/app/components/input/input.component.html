@@ -1,0 +1,16 @@
+<div class="form-group">
+  <label [for]="labelFor" class="form-label">{{ label }}</label>
+  <input
+    [id]="labelFor"
+    [type]="type"
+    [formControl]="control"
+    class="form-input"
+    [placeholder]="placeholder"
+    [class.error]="showError"
+    [class.password-input]="type === 'password'"
+    [autocomplete]="autocomplete"
+  />
+  <div class="error-message" *ngIf="showError">
+    <span>{{ firstErrorMessage }}</span>
+  </div>
+</div>
