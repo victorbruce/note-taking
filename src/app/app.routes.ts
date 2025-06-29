@@ -6,6 +6,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { authGuard } from './guards/auth.guard';
 import { NotesComponent } from './pages/notes/notes.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { NotesResolver } from './pages/notes/notes-resolver.resolver';
 
 export const routes: Routes = [
@@ -16,6 +17,7 @@ export const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   {
     path: '',
     canActivate: [authGuard],
