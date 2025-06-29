@@ -12,11 +12,17 @@ import {
 } from '@angular/forms';
 import { InputComponent } from '../../components/input/input.component';
 import { PasswordInputComponent } from '../../components/password-input/password-input.component';
-import { LoaderComponent } from "../../shared/loader/loader.component";
+import { LoaderComponent } from '../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-landing-page',
-  imports: [ReactiveFormsModule, CommonModule, InputComponent, PasswordInputComponent, LoaderComponent],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    InputComponent,
+    PasswordInputComponent,
+    LoaderComponent,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -96,12 +102,10 @@ export class LoginComponent {
   }
 
   onForgotPassword(): void {
-    console.log('Forgot password clicked');
-    // Navigate to forgot password page or show modal
+    this.router.navigate(['/forgot-password']);
   }
 
   onSignUp(): void {
-    console.log('Sign up clicked');
-    // Navigate to sign up page
+    this.router.navigate(['/signup']);
   }
 }

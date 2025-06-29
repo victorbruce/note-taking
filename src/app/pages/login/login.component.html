@@ -36,6 +36,7 @@
         type="password"
         [showForgotLink]="true"
         [control]="passwordControl"
+        (forgotClicked)="onForgotPassword()"
       ></app-password-input>
 
       <!-- Login Button -->
