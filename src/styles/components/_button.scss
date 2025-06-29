@@ -1,0 +1,66 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+%button-base {
+  @include TextPreset4;
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  box-sizing: border-box;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  &:not(:disabled):hover {
+    transform: translateY(-1px);
+  }
+}
+
+.btn {
+  @extend %button-base;
+  @include button-variant(primary);
+  @include button-size(medium);
+
+  &--primary {
+    @include button-variant(primary);
+  }
+
+  &--secondary {
+    @include button-variant(secondary);
+  }
+
+  &--border {
+    @include button-variant(border);
+  }
+
+  &--ghost {
+    @include button-variant(ghost);
+  }
+
+  // Size modifiers
+  &--small {
+    @include button-size(small);
+  }
+
+  &--medium {
+    @include button-size(medium);
+  }
+
+  &--large {
+    @include button-size(large);
+  }
+
+  &--full {
+    @include button-size(full);
+  }
+}
