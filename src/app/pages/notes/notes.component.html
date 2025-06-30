@@ -1,6 +1,38 @@
-<div>All Notes</div>
+<div class="notes-container">
+  <h1 class="page-title">All Notes</h1>
+  <div class="notes-sidebar-left">
+    <button class="btn create-note-btn" (click)="addNote()">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+      Create New Note
+    </button>
 
-<button (click)="toggleArchived()">toggle note</button>
+    <div class="empty-state">
+      <p class="empty-message">
+        You don't have any notes yet. Start a new note to capture your thoughts
+        and ideas.
+      </p>
+    </div>
+  </div>
+  <div class="content">
+    <div class="empty-state">
+      <p class="empty-message">
+        You don't have any notes yet. Start a new note to capture your thoughts
+        and ideas.
+      </p>
+    </div>
+  </div>
+  <div class="notes-sidebar-right"></div>
+</div>
+
+<!-- <button (click)="toggleArchived()">toggle note</button>
 
 <input
   type="text"
@@ -16,15 +48,6 @@
     <p>{{ note.content }}</p>
     <small *ngIf="note.tags?.length">Tags: {{ note.tags.join(", ") }}</small>
   </li>
-</ul>
+</ul> -->
 
-<ul>
-  <!-- <li *ngFor="let note of searchResults()">
-    <h3>{{ note.title }}</h3>
-    <p>{{ note.content }}, {{ note.is_archived }}</p>
-    <p><strong>Tags:</strong> {{ note.tags.join(", ") }}</p> -->
-  <!-- <p>{{ note.is_archived }}</p> -->
-  <!-- </li> -->
-</ul>
-
-<button (click)="handleLogout()">Logout</button>
+<!-- <button (click)="handleLogout()">Logout</button> -->

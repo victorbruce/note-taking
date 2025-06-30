@@ -1,0 +1,110 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  @include respond-above($breakpoint-lg) {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 64px 1fr;
+    grid-template-areas:
+      "sidebar header"
+      "sidebar main";
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-surface-elevated);
+
+  @include respond-above($breakpoint-md) {
+    grid-area: header;
+    position: relative;
+    background-color: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+.sidebar {
+  display: none;
+
+  @include respond-above($breakpoint-lg) {
+    display: block;
+    width: 240px;
+    grid-area: sidebar;
+    border-right: 1px solid var(--color-border);
+  }
+}
+
+.main-content {
+  flex: 1;
+  padding: 1rem;
+
+  @include respond-above($breakpoint-lg) {
+    flex: 0;
+    grid-area: main;
+    padding: 0;
+  }
+}
+
+.fab {
+  position: fixed;
+  bottom: 80px; // Above bottom nav
+  right: 1rem;
+  width: 56px;
+  height: 56px;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  @include theme-transition();
+  z-index: 50;
+
+  @include respond-above($breakpoint-md) {
+    display: none;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    color: white;
+  }
+
+  &:hover {
+    background-color: var(--color-primary-hover);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-background);
+  border-top: 1px solid var(--color-border);
+  padding: 0.75rem 1rem;
+  z-index: 100;
+
+  @include respond-above($breakpoint-md) {
+    display: none;
+  }
+}

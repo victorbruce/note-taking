@@ -1,0 +1,29 @@
+<div class="app-layout">
+  <!-- sidebar (only desktop)-->
+  <aside class="sidebar">
+    <app-sidebar></app-sidebar>
+  </aside>
+
+  <!-- Header -->
+  <header class="header">
+    <app-header></app-header>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- fab -->
+  <button class="fab" (click)="addNote()" aria-label="Add new note">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+  </button>
+
+  <!-- Bottom nav (mobile/tablet only)-->
+  <nav class="bottom-nav">
+    <app-bottom-nav></app-bottom-nav>
+  </nav>
+</div>

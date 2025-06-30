@@ -24,9 +24,11 @@ export class NotesComponent implements OnInit {
     this.noteService.loadNotes();
   }
 
+  addNote() {}
+
   async handleLogout() {
     this.auth.signOut().then(() => {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/auth/login']);
     });
   }
 
