@@ -9,21 +9,27 @@ import { NotesComponent } from './pages/notes/notes.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { NotesResolver } from './pages/notes/notes-resolver.resolver';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
+import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 
 export const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'notes',
-    pathMatch: 'full',
+    path: 'auth',
+    component: AuthLayoutComponent,
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
+      { path: 'signup', component: RegisterComponent },
+      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'reset-password', component: ResetPasswordComponent },
+    ],
   },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: RegisterComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
   {
     path: '',
+    component: AppLayoutComponent,
     canActivate: [authGuard],
     children: [
+      { path: '', redirectTo: 'notes', pathMatch: 'full' },
       {
         path: 'notes',
         component: NotesComponent,
