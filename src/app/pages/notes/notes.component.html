@@ -59,10 +59,17 @@
       <p>
         {{ activeNote?.content }}
       </p>
-      
     </div>
   </div>
-  <div class="notes-sidebar-right"></div>
+  <div class="notes-sidebar-right">
+    <button
+      class="delete-button"
+      [disabled]="!activeNote?.id"
+      (click)="deleteNote($event, activeNote!.id)"
+    >
+      Delete
+    </button>
+  </div>
 </div>
 
 <!-- <button (click)="toggleArchived()">toggle note</button>
