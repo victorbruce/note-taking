@@ -34,7 +34,12 @@ export class NotesComponent implements OnInit {
     console.log('not', this.activeNote);
   }
 
-  addNote() {}
+  async addNote() {
+    try {
+      await this.noteService.createNote();
+      alert('note created');
+    } catch (error) {}
+  }
 
   onSave(data: any) {}
 
@@ -63,5 +68,16 @@ export class NotesComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     console.log('input value', input.value);
     this.noteService.searchQuery.set(input.value);
+  }
+
+  async deleteNote(event: Event, noteId: string) {
+    event.stopPropagation(); // prevent triggering card click
+    const confirmed = confirm('Are you sure you want to delete this note?');
+    if (!confirmed) return;
+
+    const success = await this.noteService.deleteNoteById(noteId);
+    if (!success) {
+      this.error = 'Failed to delete note';
+    }
   }
 }
