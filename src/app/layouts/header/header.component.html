@@ -8,6 +8,9 @@
     <div class="search-container">
       <input
         type="text"
+        [value]="searchQuery()"
+        (input)="onSearchInput($event)"
+        type="text"
         placeholder="Search by title, content, or tags..."
         class="search-input"
       />

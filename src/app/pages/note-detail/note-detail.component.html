@@ -1,1 +1,60 @@
 <p>note-detail works!</p>
+<div class="note-details">
+  <div class="note-details-header">
+    <input
+      type="text"
+      [(ngModel)]="title"
+      class="note-title-input"
+      placeholder="Note title..."
+    />
+
+    <div class="note-actions">
+      <button class="btn btn-primary" (click)="onSave()">
+        <i class="lucide lucide-save"></i> Save Note
+      </button>
+      <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+
+      <!-- <div class="more-menu">
+        <button class="btn btn-icon" (click)="toggleMenu()" title="More options">
+          <i class="lucide lucide-more-horizontal"></i>
+        </button>
+        <div *ngIf="showMoreMenu" class="more-dropdown">
+          <button class="dropdown-item" (click)="archive.emit()">
+            <i class="lucide lucide-archive"></i> Archive Note
+          </button>
+          <button class="dropdown-item danger" (click)="delete.emit()">
+            <i class="lucide lucide-trash-2"></i> Delete Note
+          </button>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <div class="note-meta">
+    <div class="meta-item">
+      <i class="lucide lucide-tag meta-icon"></i>
+      <span class="meta-label">Tags</span>
+      <input
+        type="text"
+        [(ngModel)]="tagsString"
+        class="tags-input"
+        placeholder="Enter tags separated by commas"
+      />
+    </div>
+
+    <div class="meta-item">
+      <i class="lucide lucide-clock meta-icon"></i>
+      <span class="meta-label">Last edited</span>
+      <span class="meta-value">{{ lastEdited }}</span>
+    </div>
+  </div>
+
+  <div class="note-content">
+    <textarea
+      [(ngModel)]="content"
+      class="content-editor"
+      placeholder="Start writing your note..."
+      rows="20"
+    ></textarea>
+  </div>
+</div>

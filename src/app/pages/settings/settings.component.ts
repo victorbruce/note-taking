@@ -4,7 +4,9 @@ import {
   FontFamily,
 } from '../../services/typography.service';
 import { ThemeService, Theme } from '../../services/theme.service';
+import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -15,6 +17,8 @@ import { CommonModule } from '@angular/common';
 export class SettingsComponent {
   private typographyService = inject(TypographyService);
   private themeService = inject(ThemeService);
+  private auth = inject(AuthService);
+  private router = inject(Router);
 
   get fonts() {
     return this.typographyService.getAvailableFontFamilies();
@@ -50,5 +54,11 @@ export class SettingsComponent {
 
   toggleTheme() {
     this.themeService.toggleTheme();
+  }
+
+  async handleLogout() {
+    this.auth.signOut().then(() => {
+      this.router.navigate(['/auth/login']);
+    });
   }
 }
