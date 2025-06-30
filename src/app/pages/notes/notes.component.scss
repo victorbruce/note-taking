@@ -92,3 +92,78 @@
     height: 16px;
   }
 }
+
+.note-card {
+  background: var(--color-background);
+  border-radius: 8px;
+  padding: 12px 8px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  position: relative;
+  border-bottom: 1px solid var(--color-border);
+
+  &:hover {
+    background-color: var(--color-hover);
+    transform: translateY(-1px);
+  }
+
+  &.active {
+    background-color: var(--color-hover);
+  }
+}
+
+.note-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.note-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.note-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.note-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+  }
+}
+
+.note-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-primary);
+  font-size: 14px;
+  font-weight: 400;
+
+  .date-icon {
+    color: #9aa0a6;
+    flex-shrink: 0;
+  }
+
+  .date-text {
+    line-height: 1.4;
+  }
+}

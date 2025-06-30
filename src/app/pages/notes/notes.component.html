@@ -14,19 +14,52 @@
       Create New Note
     </button>
 
-    <div class="empty-state">
+    <div *ngIf="notes().length === 0" class="empty-state">
       <p class="empty-message">
         You don't have any notes yet. Start a new note to capture your thoughts
         and ideas.
       </p>
     </div>
+
+    <!-- render notes-->
+    <div
+      class="note-card"
+      [ngClass]="{ active: note.id === activeNote?.id }"
+      (click)="onCardClick(note)"
+      *ngFor="let note of notes()"
+    >
+      <div class="note-card-content">
+        <h3 class="note-title">{{ note.title }}</h3>
+
+        <div class="note-tags" *ngIf="note.tags.length > 0">
+          <span class="note-tag" *ngFor="let tag of note.tags; let i = index">
+            {{ tag }}
+          </span>
+        </div>
+
+        <div class="note-date">
+          <i class="date-icon lucide lucide-calendar"></i>
+          <span class="date-text">{{
+            note.created_at | date : "MMM d, y"
+          }}</span>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="content">
-    <div class="empty-state">
+    <div *ngIf="notes().length === 0" class="empty-state">
       <p class="empty-message">
         You don't have any notes yet. Start a new note to capture your thoughts
         and ideas.
       </p>
+    </div>
+
+    <div>
+      <h1>{{ activeNote?.title }}</h1>
+      <p>
+        {{ activeNote?.content }}
+      </p>
+      
     </div>
   </div>
   <div class="notes-sidebar-right"></div>

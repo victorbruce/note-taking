@@ -1,17 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { NoteService } from '../../services/note.service';
 import { CommonModule } from '@angular/common';
+import { DatePipe } from '@angular/common';
+import { Note } from '../../models/note';
 
 @Component({
   selector: 'app-notes',
-  imports: [CommonModule],
+  imports: [CommonModule, DatePipe],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.scss',
 })
 export class NotesComponent implements OnInit {
-  private auth = inject(AuthService);
   private noteService = inject(NoteService);
   private router = inject(Router);
 
@@ -20,16 +20,32 @@ export class NotesComponent implements OnInit {
 
   error: string | null = null;
 
+  // isActive = false;
+  activeNote: Note | null = null;
+
   ngOnInit() {
     this.noteService.loadNotes();
+
+    const notes = this.notes();
+    if (notes.length > 0) {
+      this.activeNote = notes[0];
+    }
+
+    console.log('not', this.activeNote);
   }
 
   addNote() {}
 
-  async handleLogout() {
-    this.auth.signOut().then(() => {
-      this.router.navigate(['/auth/login']);
-    });
+  onSave(data: any) {}
+
+  onCancel() {}
+
+  onDelete() {}
+
+  onArchive() {}
+
+  onCardClick(note: any) {
+    this.activeNote = note;
   }
 
   async toggleArchived() {
