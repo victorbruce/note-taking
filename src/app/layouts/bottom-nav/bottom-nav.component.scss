@@ -1,0 +1,47 @@
+@use '../../../styles/variables' as *;
+@use "../../../styles/mixins" as *;
+
+.nav-container {
+  @include flex(row, space-around, center);
+  width: 100%;
+
+  @include respond-above($breakpoint-sm) {
+    @include flex(row, space-between, center);
+  }
+}
+.nav-item {
+  @include flex(row, center, center);
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 8px;
+  @include theme-transition();
+  flex: 1;
+  max-width: 64px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    color: var(--color-text-secondary);
+    @include theme-transition((color));
+  }
+
+  &.active {
+    svg {
+      color: var(--color-primary);
+    }
+  }
+
+  &:hover {
+    background-color: var(--color-blue-50);
+
+    svg {
+      color: var(--color-primary);
+    }
+  }
+
+  &:active {
+    background-color: var(--color-blue-50);
+  }
+}

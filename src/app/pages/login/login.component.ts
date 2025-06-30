@@ -102,10 +102,10 @@ export class LoginComponent {
   }
 
   onForgotPassword(): void {
-    this.router.navigate(['/forgot-password']);
+    this.router.navigate(['/auth/forgot-password']);
   }
 
   onSignUp(): void {
-    this.router.navigate(['/signup']);
+    this.router.navigate(['/auth/signup']);
   }
 }

@@ -1,0 +1,94 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.notes-container {
+  flex: 1;
+  padding: 1.5rem 1rem;
+  padding-bottom: 100px;
+
+  @include respond-above($breakpoint-sm) {
+    padding: 1.5rem 1rem;
+  }
+
+  @include respond-above($breakpoint-lg) {
+    max-width: none;
+    margin: 0;
+    height: 100%;
+    min-height: auto;
+    padding: 0;
+
+    display: grid;
+    grid-template-columns: 280px 1fr 280px;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+  }
+}
+
+.notes-sidebar-left {
+  display: none;
+
+  @include respond-above($breakpoint-lg) {
+    display: block;
+    border-right: 1px solid var(--color-border);
+    padding: 2rem 1rem;
+  }
+}
+
+.notes-sidebar-right {
+  display: none;
+
+  @include respond-above($breakpoint-lg) {
+    display: block;
+    border-left: 1px solid var(--color-border);
+  }
+}
+
+.content {
+  .empty-state {
+    @include respond-above($breakpoint-lg) {
+      display: none;
+    }
+  }
+}
+
+.page-title {
+  @include TextPreset1;
+  margin: 0 0 1.5rem 0;
+  color: var(--color-text-primary);
+
+  @include respond-above($breakpoint-lg) {
+    display: none;
+  }
+}
+
+.empty-state {
+  @include flex(row, flex-start, flex-start);
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  padding: 0.5rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 100%;
+
+  @include respond-above($breakpoint-lg) {
+    max-width: 400px;
+  }
+}
+
+.empty-message {
+  @include TextPreset5;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+.create-note-btn {
+  @include TextPreset5;
+  width: 100%;
+  margin-bottom: 1.5rem;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}

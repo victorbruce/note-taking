@@ -1,0 +1,122 @@
+<div class="sidebar-header">
+  <div class="sidebar-logo">
+    <img src="images/logo.png" alt="notily logo" />
+    <h1 class="logo-text">Notily</h1>
+  </div>
+</div> 
+<div class="sidebar-content">
+  <nav class="sidebar-nav">
+    <div class="nav-section">
+      <button
+        class="nav-item"
+        [ngClass]="{ active: activeSection === 'notes' }"
+        (click)="handleSectionClick('notes')"
+      >
+        <svg
+          class="nav-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9,22 9,12 15,12 15,22" />
+        </svg>
+        <span class="nav-text">All Notes</span>
+        <span class="nav-arrow">›</span>
+      </button>
+
+      <button
+        class="nav-item"
+        [ngClass]="{ active: activeSection === 'archived' }"
+        (click)="handleSectionClick('archived')"
+      >
+        <svg
+          class="nav-icon"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M17.5 6.48513V13.5141C17.5 15.9708 15.7657 17.5 13.3113 17.5H6.68865C4.23432 17.5 2.5 15.9708 2.5 13.5133V6.48513C2.5 4.02837 4.23432 2.5 6.68865 2.5H13.3113C15.7657 2.5 17.5 4.03567 17.5 6.48513Z"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M12.5 11.6667L9.9985 14.1667L7.5 11.6667"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M9.99835 14.1666V8.33331"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M17.4447 5.83331H2.54883"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span class="nav-text">Archived Notes</span>
+        <span class="nav-arrow">›</span>
+      </button>
+    </div>
+
+    <!-- Tag List-->
+    <div class="nav-section">
+      <div class="section-header">
+        <p class="section-title">Tags</p>
+      </div>
+      <div>
+        <div class="tags-list">
+          <button
+            *ngFor="let tag of tags"
+            class="tag-item"
+            [ngClass]="{ active: activeSection === tag.toLowerCase() }"
+            (click)="handleSectionClick(tag.toLowerCase())"
+          >
+            <svg
+              class="tag-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M2.51318 4.97214C2.51562 3.79567 3.40507 2.74082 4.55965 2.54217C4.7964 2.50082 7.5734 2.50649 8.72233 2.5073C9.85909 2.50812 10.828 2.91676 11.6307 3.71783C13.335 5.41889 15.0377 7.12158 16.7379 8.82592C17.7441 9.83375 17.7579 11.3807 16.7558 12.3918C15.3101 13.8512 13.8571 15.3034 12.3985 16.7491C11.3883 17.7504 9.84125 17.7374 8.83259 16.7312C7.11287 15.0163 5.39315 13.3015 3.68074 11.5793C3.01831 10.9129 2.62751 10.1077 2.54075 9.16642C2.47102 8.414 2.51156 5.61673 2.51318 4.97214Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M8.25593 6.92934C8.25268 7.6542 7.64702 8.25014 6.91487 8.24852C6.18757 8.2469 5.5819 7.64042 5.58596 6.91799C5.59082 6.16394 6.18757 5.57612 6.94648 5.57936C7.66647 5.58179 8.25917 6.19233 8.25593 6.92934Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span class="tag-text">{{ tag }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
